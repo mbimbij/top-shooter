@@ -21,14 +21,13 @@ public class PlayerShould {
             "0, 0, 1, 315, 1, 0.7071, -0.7071",
             "0, 0, 1, 315, 0.5, 0.3535, -0.3535",
     })
-    void movesPlayerForInput(double initX, double initY, double speed, double joyAngleDegree, double joyStrength, double expectedX, double expectedY) {
+    void moveAccordingToJoystickInput(double initX, double initY, double speed, double joyAngleDegree, double joyStrength, double expectedX, double expectedY) {
         // GIVEN
         Player player = new Player(initX, initY, speed);
         double joystickAngleRadiant = degreeToRadiant(joyAngleDegree);
-        double joystickStrength = joyStrength;
 
         // WHEN
-        Player updatedPlayer = player.move(joystickAngleRadiant, joystickStrength);
+        Player updatedPlayer = player.move(joystickAngleRadiant, joyStrength);
 
         // THEN
         assertSoftly(softAssertions -> {
