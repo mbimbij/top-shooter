@@ -18,4 +18,8 @@ public class Player {
     public Player setOrientation(double orientation) {
         return new Player(x, y, speed, orientation);
     }
+
+    public Bullet shoot() {
+        return new Bullet(x,y,orientation);
+    }
 }

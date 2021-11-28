@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import static com.mbimibj.topshooter.Bullet.BULLET_SPEED;
+import static com.mbimibj.topshooter.TestUtils.degreeToRadiant;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 public class PlayerShould {
@@ -36,8 +38,25 @@ public class PlayerShould {
         });
     }
 
-    private double degreeToRadiant(double angleDegree) {
-        return angleDegree * Math.PI / 180d;
+    @Test
+    void shootBullet() {
+        // GIVEN
+        double playerX = 1;
+        double playerY = 2;
+        double speed = 3;
+        int playerOrientation = 4;
+        Player player = new Player(playerX, playerY, speed, playerOrientation);
+
+        // WHEN
+        Bullet bullet = player.shoot();
+
+        // THEN
+        assertSoftly(softAssertions -> {
+            softAssertions.assertThat(bullet.getX()).isEqualTo(playerX);
+            softAssertions.assertThat(bullet.getY()).isEqualTo(playerY);
+            softAssertions.assertThat(bullet.getSpeed()).isEqualTo(BULLET_SPEED);
+            softAssertions.assertThat(bullet.getOrientation()).isEqualTo(playerOrientation);
+        });
     }
 
     @Test
