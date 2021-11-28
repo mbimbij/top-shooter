@@ -21,9 +21,9 @@ public class PlayerShould {
             "0, 0, 1, 315, 1, 0.7071, -0.7071",
             "0, 0, 1, 315, 0.5, 0.3535, -0.3535",
     })
-    void moveAccordingToJoystickInput(double initX, double initY, double speed, double joyAngleDegree, double joyStrength, double expectedX, double expectedY) {
+    void moveAccordingToLeftStick(double initX, double initY, double speed, double joyAngleDegree, double joyStrength, double expectedX, double expectedY) {
         // GIVEN
-        Player player = new Player(initX, initY, speed);
+        Player player = new Player(initX, initY, speed, 0);
         double joystickAngleRadiant = degreeToRadiant(joyAngleDegree);
 
         // WHEN
@@ -36,13 +36,12 @@ public class PlayerShould {
         });
     }
 
+    private double degreeToRadiant(double angleDegree) {
+        return angleDegree * Math.PI / 180d;
+    }
 
     @Test
     void name() {
         System.out.println(Math.sqrt(2)/4);
-    }
-
-    private double degreeToRadiant(double angleDegree) {
-        return angleDegree * Math.PI / 180d;
     }
 }
