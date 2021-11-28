@@ -1,18 +1,21 @@
 package com.mbimibj.topshooter;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-@Value
+@Data
+@AllArgsConstructor
 public class Player {
     double x;
     double y;
     double speed;
     double orientation;
 
-    public Player move(double joystickAngle, double joystickStrength) {
+    public void move(double joystickAngle, double joystickStrength) {
         double deltaX = Math.cos(joystickAngle) * joystickStrength * speed;
         double deltaY = Math.sin(joystickAngle) * joystickStrength * speed;
-        return new Player(x + deltaX, y + deltaY, speed, orientation);
+        x += deltaX;
+        y += deltaY;
     }
 
     public Player setOrientation(double orientation) {
@@ -20,6 +23,6 @@ public class Player {
     }
 
     public Bullet shoot() {
-        return new Bullet(x,y,orientation);
+        return new Bullet(x, y, orientation);
     }
 }

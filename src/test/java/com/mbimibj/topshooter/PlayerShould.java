@@ -29,12 +29,12 @@ public class PlayerShould {
         double joystickAngleRadiant = degreeToRadiant(joyAngleDegree);
 
         // WHEN
-        Player updatedPlayer = player.move(joystickAngleRadiant, joyStrength);
+        player.move(joystickAngleRadiant, joyStrength);
 
         // THEN
         assertSoftly(softAssertions -> {
-            softAssertions.assertThat(updatedPlayer.getX()).isEqualTo(expectedX, Offset.offset(0.0001));
-            softAssertions.assertThat(updatedPlayer.getY()).isEqualTo(expectedY, Offset.offset(0.0001));
+            softAssertions.assertThat(player.getX()).isEqualTo(expectedX, Offset.offset(0.0001));
+            softAssertions.assertThat(player.getY()).isEqualTo(expectedY, Offset.offset(0.0001));
         });
     }
 
